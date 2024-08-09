@@ -12,7 +12,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.json({ message: "Bienvenido a Plantiv" });
+  res.json({ message: "Bienvenido al servidor de Plantiv" });
 });
 
 app.use("/auth", authRoutes);
