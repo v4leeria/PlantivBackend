@@ -1,4 +1,15 @@
-const { pool } = require("../config/db");
+const pool = require("../config/db");
+
+const testQuery = async () => {
+  try {
+    const result = await pool.query("SELECT * FROM users LIMIT 1");
+    console.log("Resultado de la prueba:", result.rows);
+  } catch (err) {
+    console.error("Error en la consulta de prueba:", err);
+  }
+};
+
+testQuery();
 
 const getUserByEmail = async (email) => {
   try {
@@ -7,6 +18,7 @@ const getUserByEmail = async (email) => {
     ]);
     return result.rows[0];
   } catch (err) {
+    console.error("Error al ejecutar la consulta:", err);
     throw new Error("Error al obtener el usuario por correo electrónico");
   }
 };

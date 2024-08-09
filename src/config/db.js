@@ -4,7 +4,13 @@ require("dotenv").config();
 const pool = new Pool({
   connectionString: process.env.DB_URL,
 });
+console.log("DB_URL:", process.env.DB_URL);
 
-module.exports = {
-  query: (text, params) => pool.query(text, params),
-};
+pool.query("SELECT NOW()", (err, res) => {
+  if (err) {
+    console.error("Error ejecutando la consulta", err);
+  } else {
+    console.log("Hora actual:", res.rows[0]);
+  }
+});
+module.exports = pool;
