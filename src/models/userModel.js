@@ -1,4 +1,5 @@
 const pool = require("../config/db");
+console.log("Pool:", pool);
 
 const testQuery = async () => {
   try {

@@ -30,10 +30,10 @@ const register = async (req, res) => {
   } = req.body;
 
   try {
-    const existingUser = await getUserByEmail(email);
+    /* const existingUser = await getUserByEmail(email);
     if (existingUser) {
       return res.status(400).json({ error: "El correo ya está registrado" });
-    }
+    }*/
 
     const hashedPassword = await bcrypt.hash(password, 10);
     const newUser = {
@@ -52,8 +52,13 @@ const register = async (req, res) => {
 
     res.status(201).json({ token });
   } catch (error) {
-    console.error("Error en el registro:", error);
-    res.status(500).json({ error: "Error en el registro" });
+    if (error.code === "23505") {
+      // Código de error de duplicado en Postgres
+      res.status(400).json({ error: "El correo ya está registrado" });
+    } else {
+      console.error("Error en el registro:", error);
+      res.status(500).json({ error: "Error en el registro" });
+    }
   }
 };
 

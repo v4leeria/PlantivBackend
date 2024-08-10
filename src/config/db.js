@@ -3,6 +3,7 @@ require("dotenv").config();
 
 const pool = new Pool({
   connectionString: process.env.DB_URL,
+  connectionTimeoutMillis: 5000,
 });
 console.log("DB_URL:", process.env.DB_URL);
 
