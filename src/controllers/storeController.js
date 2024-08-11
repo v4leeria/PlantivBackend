@@ -10,15 +10,14 @@ const {
 const listProducts = async (req, res) => {
   try {
     const products = await getProducts();
-
-    // Asegúrate de que products sea un array
+    console.log("Products:", products); // Verifica los datos obtenidos
     const formattedProducts = (products || []).map((product) => ({
       ...product,
       price: Math.round(product.price),
     }));
-
     res.json(formattedProducts);
   } catch (err) {
+    console.error("Error en listProducts:", err); // Mensaje de error detallado
     res.status(500).json({ error: "Error al obtener los productos" });
   }
 };
@@ -99,6 +98,7 @@ const publishProduct = async (req, res) => {
       { name, description, price, stock, imgplanta }
       //userId
     );
+    console.log(newProduct);
     res.status(201).json(newProduct);
   } catch (err) {
     console.error("Error al publicar el producto:", err);
