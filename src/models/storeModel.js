@@ -21,6 +21,7 @@ const getCartItems = async (userId) => {
   const values = [userId];
   try {
     const result = await pool.query(query, values);
+    console.log("Cart Items Result:", result.rows);
     return result.rows;
   } catch (error) {
     console.error("Error al obtener cart items:", error);
