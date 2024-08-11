@@ -84,7 +84,7 @@ const removeItemFromCart = async (req, res) => {
   }
 };
 
-/*const publishProduct = async (req, res) => {
+const publishProduct = async (req, res) => {
   if (!req.user || !req.user.id) {
     return res.status(401).json({ error: "Usuario no autenticado" });
   }
@@ -95,25 +95,6 @@ const removeItemFromCart = async (req, res) => {
       { name, description, price, stock, imgplanta },
       userId
     );
-    res.status(201).json(newProduct);
-  } catch (err) {
-    console.error("Error al publicar el producto:", err);
-    res.status(500).json({ error: "Error creando el producto" });
-  }
-};*/
-const publishProduct = async (req, res) => {
-  if (!req.user || !req.user.id) {
-    return res.status(401).json({ error: "Usuario no autenticado" });
-  }
-
-  // Crear un objeto producto que incluya userId
-  const product = {
-    ...req.body,
-    userId: req.user.id,
-  };
-
-  try {
-    const newProduct = await createProduct(product); // Pasar el objeto product directamente
     res.status(201).json(newProduct);
   } catch (err) {
     console.error("Error al publicar el producto:", err);
