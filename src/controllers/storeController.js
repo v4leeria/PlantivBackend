@@ -11,15 +11,18 @@ const listProducts = async (req, res) => {
   try {
     const products = await getProducts();
 
-    const formattedProducts = products.map((product) => ({
+    // Asegúrate de que products sea un array
+    const formattedProducts = (products || []).map((product) => ({
       ...product,
       price: Math.round(product.price),
     }));
+
     res.json(formattedProducts);
   } catch (err) {
     res.status(500).json({ error: "Error al obtener los productos" });
   }
 };
+
 const getProduct = async (req, res) => {
   const { id } = req.params;
   try {
