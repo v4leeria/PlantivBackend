@@ -17,7 +17,8 @@ const listProducts = async (req, res) => {
     }));
     res.json(formattedProducts);
   } catch (err) {
-    console.error("Error en listProducts:", err); // Mensaje de error detallado
+    console.error("Error en listProducts:", err);
+    // Mensaje de error detallado ---------
     res.status(500).json({ error: "Error al obtener los productos" });
   }
 };
