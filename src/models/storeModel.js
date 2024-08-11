@@ -97,7 +97,7 @@ const removeFromCart = async (userId, productId) => {
 };
 
 const createProduct = async (product, userId) => {
-  const { name, description, price, stock, imgplanta } = product;
+  const { name, description, price, stock, imgplanta, userId } = product;
   try {
     const result = await pool.query(
       "INSERT INTO products (name, description, price, stock, imgplanta, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
