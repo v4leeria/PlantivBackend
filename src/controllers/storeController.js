@@ -89,11 +89,11 @@ const publishProduct = async (req, res) => {
     return res.status(401).json({ error: "Usuario no autenticado" });
   }
   const { name, description, price, stock, imgplanta } = req.body;
-  const userId = req.user.id;
+  //const userId = req.user.id;
   try {
     const newProduct = await createProduct(
-      { name, description, price, stock, imgplanta },
-      userId
+      { name, description, price, stock, imgplanta }
+      //userId
     );
     res.status(201).json(newProduct);
   } catch (err) {

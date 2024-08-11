@@ -96,12 +96,14 @@ const removeFromCart = async (userId, productId) => {
   }
 };
 
+//-------------Voy a sacar userId
+
 const createProduct = async (product, userId) => {
   const { name, description, price, stock, imgplanta } = product;
   try {
     const result = await pool.query(
-      "INSERT INTO products (name, description, price, stock, imgplanta, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
-      [name, description, price, stock, imgplanta, userId]
+      "INSERT INTO products (name, description, price, stock, imgplanta, ) VALUES ($1, $2, $3, $4, $5 ) RETURNING *",
+      [name, description, price, stock, imgplanta]
     );
     return result.rows[0];
   } catch (error) {
