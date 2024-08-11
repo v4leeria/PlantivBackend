@@ -40,6 +40,7 @@ const getCart = async (req, res) => {
     return res.status(401).json({ error: "Usuario no autenticado" });
   }
   const userId = req.user.id;
+  console.log(userId);
   try {
     const cartItems = await getCartItems(userId);
     res.status(200).json(cartItems);
